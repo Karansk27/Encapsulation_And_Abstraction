@@ -1,0 +1,299 @@
+#Library Mangment Program
+class Library():
+    def __init__(self, list):
+        self.books_list = list
+        self.available_books_list = list[:]
+        self.books_lent = {}
+
+    def display_available_books(self):
+        for book in self.available_books_list:
+            print(book)
+
+    def display_all_books(self):
+        for book in self.books_list:
+            print(book)
+
+    def lend_book(self, name, book):
+        if book not in self.books_list:
+            print("Incorrect book name. Please check book list")
+            return
+        if book in self.available_books_list:
+            self.books_lent.update({book: name})
+            self.available_books_list.remove(book)
+            print("You can take the book..")
+        else:
+            print("The book is already taken by " + self.books_lent[book])
+
+    def return_book(self, book):
+        del self.books_lent[book]
+        self.available_books_list.append(book)
+
+
+if __name__ == "__main__":
+    Government_Lib = Library(["Java Programing","Python","C++","C Programing","PHP","Machine Learning","Deeplearing"])
+    print("Welcome to Library. Enter an option. ")
+    while True:
+        print("1.Display available books")
+        print("2.Display all books ")
+        print("3.Borrow a book")
+        print("4.Return a book")
+        print("5.Quit")
+        user_choice = int(input())
+        if user_choice == 1:
+            Government_Lib.display_available_books()
+        elif user_choice == 2:
+            Government_Lib.display_all_books()
+        elif user_choice == 3:
+            name = input("Enter User Name : ")
+            book = input("Enter Book Name :")
+            Government_Lib.lend_book(name, book)
+        elif user_choice == 4:
+            book = input("Enter the name of the Book : ")
+            Government_Lib.return_book(book)
+        elif user_choice == 5:
+            break
+        else:
+            print("Invalid choice")
+
+
+
+
+#Single inheritence
+class Mobile():
+  company="Nokia MNC Company"
+  Website="wwww.Google.com"
+  def Cantact_Deatails(self):
+    print("address : 105/5 ,kalai vani Nagar,Chinna trupathi ,kannankurichi Main Road")
+class new_moblie(Mobile):
+    def __init__(self):
+      self.Name="Samsaung "
+      self.year=1991
+      self.price="17,000"
+    def Prodect_Details(self):
+      print("Company Name : ",self.company)
+      print("Website Name : ",self.Website)
+      print("Company Namr : ",self.Name)
+      print("Moblie Ptrice : ",self.price)
+User=new_moblie()
+User.Cantact_Deatails()
+User.Prodect_Details()
+
+
+# Multiple inheritence
+class Deparment_of_Computer():
+    Hod = "Thangavel"
+    Assi_Hod = "Akkilandeswari"
+
+    def IIBSc(self, Total, Male, Female):
+        self.Total = Total
+        self.Male = Male
+        self.Female = Female
+
+    def IIMsc(self, Total_2, Male_2, Female_2):
+        self.Total_2 = Total_2
+        self.Male_2 = Male_2
+        self.Female_2 = Female_2
+
+    def Display(self):
+        print("Totak Number Of II- Bsc Student : ", self.Total)
+        print("Total number of Boys In II-Bsc : ", self.Male)
+        print("Total Number of Girls in II-Bsc : ", self.Female)
+        print("Totak Number Of II- Msc Student : ", self.Total_2)
+        print("Total number of Boys In II-Msc : ", self.Male_2)
+        print("Total Number of Girls in II-Msc : ", self.Female_2)
+
+
+class Department_of_Commerce():
+    Hod = "Karan"
+
+
+print("Function Over Writing ")
+
+
+class Staff():
+    def __init__(self):
+        self.working_hrs = 50
+        self.techhrs = 20
+
+    def display(self):
+        print("Total Number of staff working in Hrs In : ", self.working_hrs)
+        print("Total Number of staff teching in Hrs In : ", self.techhrs)
+
+
+class students(Staff):
+    def working_hrs(self):
+        self.studying_hrs = 30
+
+    def studying_hrs(self):
+        self.study_hrs = 10
+
+    def display(self):
+        print("Total Number of students Studying in Hrs : ", self.studying_hrs)
+        print("Total Number of Students Studying in Hrs : ", self.study_hrs)
+
+
+Human = students()
+Human.display()
+
+#Abstraction
+from abc import ABC,abstractmethod
+class Bank(ABC):
+     @abstractmethod
+     def loan(self): pass
+
+     @abstractmethod
+     def credit(self): pass
+
+     @abstractmethod
+     def debit(self): pass
+
+     @abstractmethod
+     def Thanks(self): pass
+
+class State_Bank(Bank):
+    def loan(self):
+        print("SBI provide the Loan for Home and Gold")
+    def credit(self):
+        print("SBI provide the Credit card ")
+    def debit(self):
+        print("SBI provide The debit Card ")
+    def Thanks(self):
+        print("THanks  for Using SBI Service")
+
+User=State_Bank()
+User.loan()
+User.credit()
+User.debit()
+User.Thanks()
+
+# Read and write the File
+class File():
+    def __init__(self,file_name):
+        self.file_name=file_name
+    def read(self):
+      with  open(self.file_name,"r") as file:
+        return file.read()
+    def write(self,data):
+      with open(self.file_name,"w") as file:
+          file.write(data)
+    def appendline(self,data_1):
+        with open(self.file_name,"a") as file:
+            file.write(data_1)
+
+Handle=File("pratice_1.py")
+karan=Handle.read()
+print(karan)
+sk=Handle.appendline("welcome To Adople Ai Company")
+print(sk)
+Handle.write("Welcome To The Adople Ai")
+print(karan)
+
+#Generator
+
+
+def print_List(list):
+    for i in range(0,len(list)):
+        list[i]=list[i].title()
+        print(list[i])
+Name=["karan","santhosh","gokul","selvam","hari"]
+print_List(Name)
+
+#Dictionarys
+def User_Information():
+    User={
+        "Username ":" Karan_Sk27",
+        "Age ":"19 Years Old",
+        "Gender ": "Male",
+        "Place ": "Salem",
+        "Designation ": "AI Developer "
+    }
+    return User
+User=User_Information()
+print("User Information : ",User)
+
+#generators
+def Token_List_1(Token_count):
+    Token_list=[]
+    for  i in range(Token_count):
+        Token_list.append(i)
+    return Token_list
+Parking=Token_List_1(int(input("Enter The Total Vaild Token : ")))
+print(Parking)
+
+def Generator(Token_count):
+    for i in range(Token_count):
+        yield i
+Park=Generator(int(input("Enter The Number of Token : ")))
+print(Park)
+next(Park)
+next(Park)
+
+
+
+
+#Function Overriding
+class computer_Science_Deparment():
+   def Students(self):
+     self.Hrs = 70
+   def Disply(self):
+     print("Total Number of Students in Class Room : ",self.Hrs)
+class Zoology_deparmennt(computer_Science_Deparment):
+   def Students(self):
+    self.Hrs=50
+   def rest(self):
+     super().Students()
+A=computer_Science_Deparment()
+A.Students()
+A.Disply()
+K=Zoology_deparmennt()
+K.Students()
+K.Disply()
+K.rest()
+K.Disply()
+
+class Principal_office():
+  def __init__(self):
+    self.Teching_Staff= 80
+    self.Management_staff=20
+    self.Assitant=7
+  def Display_P(self):
+    print("Total Number of Teching_Staff : ",self.Teching_Staff)
+    print("Total Number of Management : ",self.Management_staff)
+    print("Total Number of Assitant : ",self.Assitant)
+
+class Computer_Science_Department(Principal_office):
+  def Student_Cs(self):
+      self.Boys =120
+      self.Girls=80
+  def Product_Cs(self):
+    self.Bench=300
+    self.borad=7
+  def Display_Cs(self):
+    print("Total number of Bench : ",self.Bench)
+    print("Total Number of borad : ",self.borad)
+
+class Deparment_Chemirstry(Principal_office):
+   def Student_C(self):
+      self.Boys =120
+      self.Girls=80
+   def Product_C(self):
+    self.Bench=150
+    self.borad=7
+   def Display_C(self):
+    print("Total number of Bench : ",self.Bench)
+    print("Total Number of borad : ",self.borad)
+
+class Deparment_Computer_Applications(Principal_office):
+   def Student_CA(self):
+      self.Boys =120
+      self.Girls=80
+   def Product_CA(self):
+    self.Bench=150
+    self.borad=7
+   def Display_CA(self):
+     print("Total number of Bench : ",self.Bench)
+     print("Total Number of borad : ",self.borad)
+
+Off=Deparment_Chemirstry()
+Off.Student_C()
+Off.Display_C()
